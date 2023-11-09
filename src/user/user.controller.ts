@@ -7,6 +7,11 @@ import { Article } from 'src/article/entities/article.entity';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get()
+  async getAllUsers() {
+    return this.userService.findAll();
+  }
+
   @Post(':userId/favorites/:articleId')
   async addToFavorites(
     @Param('userId') userId: number,
