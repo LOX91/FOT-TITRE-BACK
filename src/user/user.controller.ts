@@ -25,6 +25,8 @@ export class UserController {
     @Param('userId') userId: number,
     @Param('articleId') articleId: number,
   ) {
-    await this.userService.removeFromFavorites(userId, articleId);
+    // Le '+' ou le Number() reviens à la meme chose ! Changer un String en Number
+
+    await this.userService.removeFromFavorites(+userId, Number(articleId));
   }
 }
