@@ -1,9 +1,11 @@
 import { Category } from 'src/category/entities/category.entity';
 import { Picture } from 'src/picture/entities/picture.entity';
+import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -36,4 +38,7 @@ export class Article {
   @OneToOne(() => Picture, { eager: true, cascade: true })
   @JoinColumn({ name: 'id_picture' })
   picture: Picture;
+
+  @ManyToMany(() => User, (user) => user.favorites)
+  favorites: User[];
 }

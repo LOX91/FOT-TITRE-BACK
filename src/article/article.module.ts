@@ -10,9 +10,10 @@ import { PictureModule } from 'src/picture/picture.module';
   imports: [
     PictureModule,
     TypeOrmModule.forFeature([Article]),
-    PassportModule.register({ defaultStrategy: 'jwt' })
+    PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [ArticleController],
   providers: [ArticleService],
+  exports: [TypeOrmModule.forFeature([Article])],
 })
 export class ArticleModule {}
