@@ -64,7 +64,7 @@ export class AuthService {
       const payload = { admin: admin };
       const accessToken = await this.jwtService.sign(payload);
 
-      delete user.id_users;
+      // delete user.id_users;
       delete user.password;
       delete user.admin;
 
