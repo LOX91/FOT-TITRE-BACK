@@ -36,10 +36,12 @@ export class PicturesService {
   }
 
   async deleteImageById(id_picture: number): Promise<boolean> {
-    const image = await this.pictureRepository.findOneBy({id_picture});
+    const image = await this.pictureRepository.findOneBy({ id_picture });
 
     if (!image) {
-      throw new NotFoundException(`The photo with ID ${id_picture} is not found.`);
+      throw new NotFoundException(
+        `The photo with ID ${id_picture} is not found.`,
+      );
     }
 
     const imageFilePath = join(process.cwd(), 'uploads', image.name);
@@ -55,6 +57,6 @@ export class PicturesService {
     // Delete the image record from the database
     await this.pictureRepository.remove(image);
 
-    return true; 
+    return true;
   }
 }

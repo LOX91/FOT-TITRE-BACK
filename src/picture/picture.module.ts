@@ -16,6 +16,6 @@ import { PassportModule } from '@nestjs/passport';
   ],
   controllers: [PicturesController],
   providers: [PicturesService],
-  exports: [TypeOrmModule.forFeature([Picture])]
+  exports: [TypeOrmModule.forFeature([Picture])],
 })
 export class PictureModule {}
