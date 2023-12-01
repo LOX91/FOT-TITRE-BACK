@@ -14,7 +14,11 @@ export class Category {
 
   @Column()
   name: string;
-  @OneToMany(() => Category, (category) => category.article)
-  @JoinColumn({ name: 'id_article' })
-  article: Article;
+
+  @OneToMany(() => Article, (article) => article.category, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn({ name: 'id_category', referencedColumnName: 'id' })
+  articles: Article[];
 }

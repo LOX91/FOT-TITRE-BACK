@@ -21,4 +21,18 @@ export class CategoryService {
   findAll() {
     return this.categoryRepository.find();
   }
+
+  async remove(id_category: number): Promise<void> {
+    const categoryToRemove = await this.categoryRepository.findOneBy({
+      id_category,
+    });
+
+    if (!categoryToRemove) {
+      // You can choose how to handle cases where the article with the given id is not found.
+      // Here, I'm throwing an exception, but you can also return a specific message or status code.
+      throw new Error(`Categorie avec l'ID ${id_category} absent!`);
+    }
+
+    await this.categoryRepository.remove(categoryToRemove);
+  }
 }

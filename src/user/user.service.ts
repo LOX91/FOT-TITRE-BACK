@@ -37,23 +37,18 @@ export class UserService {
         where: { id_users: userId },
         relations: ['favorites'],
       });
-
       if (!user) {
         throw new NotFoundException('Utilisateur non trouvé');
       }
-
       const article = await this.articleRepository.findOneBy({
         id_article: articleId,
       });
-
       if (!article) {
         throw new NotFoundException('Article non trouvé');
       }
-
       const isArticleInFavorites = user.favorites.some(
         (favorite) => favorite.id_article === articleId,
       );
-
       if (!isArticleInFavorites) {
         user.favorites.push(article);
         await this.userRepository.save(user);
@@ -67,7 +62,6 @@ export class UserService {
       if (!userWithFavorites) {
         throw new NotFoundException('Utilisateur non trouvé');
       }
-
       return userWithFavorites;
     } catch (error) {
       console.error(error);

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
@@ -13,7 +21,7 @@ export class ArticleController {
     return this.articleService.create(createArticleDto);
   }
 
-  //@UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   @Get()
   findAll() {
     return this.articleService.findAll();
@@ -26,7 +34,7 @@ export class ArticleController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateArticleDto: UpdateArticleDto) {
-     return this.articleService.update(+id, updateArticleDto);
+    return this.articleService.update(+id, updateArticleDto);
   }
 
   @Delete(':id')

@@ -15,4 +15,8 @@ export class CategoryController {
   findAll() {
     return this.categoryService.findAll();
   }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.categoryService.remove(+id);
+  }
 }

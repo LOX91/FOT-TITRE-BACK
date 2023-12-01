@@ -31,8 +31,10 @@ export class Article {
   @Column()
   id_picture: number;
 
-  @ManyToOne(() => Article, (article) => article.category)
-  @JoinColumn({ name: 'id_category' })
+  @ManyToOne(() => Category, (category) => category.articles, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'id_category', referencedColumnName: 'id_category' })
   category: Category;
 
   @OneToOne(() => Picture, { eager: true, cascade: true })
